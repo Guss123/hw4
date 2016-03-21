@@ -15,7 +15,8 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  flunk "Unimplemented"
+  #flunk "Unimplemented"
+  assert /#{e1}.*#{e2}/m.match(page.body)
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -39,6 +40,6 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   #flunk "Unimplemented"
-  page.all('table#movies tr').count-1 == Movie.count()
+  assert page.all('table#movies tr').count-1 == Movie.count()
   
 end
